@@ -1,0 +1,12 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1700328992
+icon.svg::CompressedTexture2D::8694469100537529851::1700328710::1700328794::1::::<><>::
+::res://assets/::1700328992
+enemy.png::CompressedTexture2D::4030657988658014783::1700328710::1700328794::1::::<><>::
+meteor.png::CompressedTexture2D::7813996955862279069::1700328710::1700328794::1::::<><>::
+spaceship.png::CompressedTexture2D::1580374912864832456::1700328710::1700328794::1::::<><>::
+::res://assets/music/::1700328992
+holo_trip.mp3::AudioStreamMP3::6063106896572789860::1700328990::1700328992::1::::<><>::
+::res://scenes/::1700328955
+game.tscn::PackedScene::8397045638489632500::1700328860::0::1::::<><>::
+player.tscn::PackedScene::1435143676345459579::1700328955::0::1::::<><>::uid://wrssq1g3mase::::res://assets/spaceship.png
