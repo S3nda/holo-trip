@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://upguvkwa6uox"]
+
+[ext_resource type="Texture2D" uid="uid://wrssq1g3mase" path="res://assets/spaceship.png" id="1_m48vj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6e80"]
+size = Vector2(282, 282)
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.392199, 0.392199)
+texture = ExtResource("1_m48vj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v6e80")
