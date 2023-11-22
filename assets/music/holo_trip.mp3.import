@@ -2,7 +2,7 @@
 
 importer="mp3"
 type="AudioStreamMP3"
-uid="uid://csnaqqm3j7peq"
+uid="uid://bdfa56tmemq7b"
 path="res://.godot/imported/holo_trip.mp3-be958fb50d04bc818fd873c1cfe18081.mp3str"
 
 [deps]
@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/holo_trip.mp3-be958fb50d04bc818fd873c1cfe1808
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

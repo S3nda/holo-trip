@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://upguvkwa6uox"]
+
+[ext_resource type="Texture2D" uid="uid://wrssq1g3mase" path="res://assets/spaceship.png" id="1_m48vj"]
+
+[sub_resource type="GDScript" id="GDScript_ljxst"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 500
+@export var rotation_speed = 10
+var boost = 0
+var rotation_direction = 0
+
+func _ready():
+	pass
+
+func _physics_process(delta):
+	get_input()
+	count += 1
+
+	if (count % 100 == 0):
+		boost += 1
+
+	if speed > 800:
+		speed *= 0.92
+
+	if Input.is_action_pressed(\"spacebar\") and boost>3:
+		speed = 3000
+		boost = 0
+
+	rotation += rotation_direction * 5* rotation_speed * delta
+	velocity = -transform.y * speed
+	
+	move_and_slide()
+
+func get_input():
+	rotation_direction = Input.get_axis(\"left\", \"right\")
+
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6e80"]
+size = Vector2(69, 71)
+
+[node name="Player" type="CharacterBody2D"]
+script = SubResource("GDScript_ljxst")
+speed = null
+rotation_speed = null
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 7.62939e-06)
+scale = Vector2(0.0968087, 0.0968087)
+texture = ExtResource("1_m48vj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v6e80")
