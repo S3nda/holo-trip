@@ -1,0 +1,135 @@
+[gd_scene load_steps=18 format=3 uid="uid://drvud5001f73u"]
+
+[ext_resource type="PackedScene" uid="uid://upguvkwa6uox" path="res://objects/player.tscn" id="1_p8ruf"]
+[ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="1_r1rlg"]
+[ext_resource type="PackedScene" uid="uid://m8dyytuttb6v" path="res://scenes/background.tscn" id="7_nx0kb"]
+[ext_resource type="Script" path="res://scenes/GUI.gd" id="8_txdis"]
+[ext_resource type="Texture2D" uid="uid://cdm2r3su8nop7" path="res://assets/GUI/1.png" id="9_6cpqm"]
+[ext_resource type="AudioStream" uid="uid://bdfa56tmemq7b" path="res://assets/music/holo_trip.mp3" id="9_8v2mw"]
+[ext_resource type="Texture2D" uid="uid://s61ep7g1r66w" path="res://assets/GUI/0.png" id="9_jes21"]
+[ext_resource type="AudioStream" uid="uid://bs3qinvj0t7yt" path="res://assets/music/theme2.mp3" id="10_uh6em"]
+[ext_resource type="Texture2D" uid="uid://bkjd703rvw1x5" path="res://assets/GUI/2.png" id="10_x4n2d"]
+[ext_resource type="Texture2D" uid="uid://doj6fj7ei6n5e" path="res://assets/GUI/3.png" id="11_3drdq"]
+[ext_resource type="PackedScene" uid="uid://dwyl8xyhhmcem" path="res://objects/Bullet.tscn" id="13_ulssl"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0r8f"]
+streams_count = 2
+playback_mode = 1
+random_pitch = 1.0
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("10_uh6em")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("9_8v2mw")
+stream_1/weight = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1at54"]
+shader = ExtResource("1_r1rlg")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.27
+shader_parameter/softness = 0.815
+
+[sub_resource type="Gradient" id="Gradient_1ylwa"]
+offsets = PackedFloat32Array(0, 0.532374)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ckvli"]
+gradient = SubResource("Gradient_1ylwa")
+
+[sub_resource type="Environment" id="Environment_kf0ss"]
+background_mode = 3
+glow_enabled = true
+glow_normalized = true
+glow_intensity = 8.0
+glow_strength = 1.24
+glow_bloom = 0.62
+glow_hdr_threshold = 1.41
+glow_hdr_scale = 1.84
+glow_hdr_luminance_cap = 48.95
+fog_light_energy = 3.33
+fog_sun_scatter = 0.76
+fog_density = 1.0
+fog_height = 59.65
+adjustment_enabled = true
+adjustment_brightness = 0.6
+adjustment_contrast = 1.07
+adjustment_color_correction = SubResource("GradientTexture2D_ckvli")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fakwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_jes21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6cpqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x4n2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3drdq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Game" type="Node2D"]
+position = Vector2(577, 324)
+
+[node name="Player" parent="." instance=ExtResource("1_p8ruf")]
+unique_name_in_owner = true
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_r0r8f")
+volume_db = -0.92
+autoplay = true
+mix_target = 1
+
+[node name="BGNode" parent="." instance=ExtResource("7_nx0kb")]
+
+[node name="POST" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="POST"]
+material = SubResource("ShaderMaterial_1at54")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="POST"]
+environment = SubResource("Environment_kf0ss")
+
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource("8_txdis")
+
+[node name="GUIBar" type="ColorRect" parent="GUI"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_top = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 230.0
+offset_top = -101.864
+offset_right = -228.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.352941, 0.352941, 0.352941, 1)
+
+[node name="BoostLevels" type="AnimatedSprite2D" parent="GUI"]
+unique_name_in_owner = true
+position = Vector2(332, 541)
+sprite_frames = SubResource("SpriteFrames_fakwx")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_speed = 46.93
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Bullet" parent="." instance=ExtResource("13_ulssl")]

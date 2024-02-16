@@ -1,0 +1,189 @@
+[gd_scene load_steps=7 format=3 uid="uid://m8dyytuttb6v"]
+
+[ext_resource type="Texture2D" uid="uid://c844kq3q18use" path="res://assets/bg/sky.jpg" id="2_bc2ca"]
+[ext_resource type="Texture2D" uid="uid://c1x0bt3ngqa5d" path="res://assets/bg/stars.png" id="3_hfw4o"]
+[ext_resource type="Texture2D" uid="uid://nb3q3nogvqxp" path="res://assets/bg/asteroid_anim.png" id="4_n5rgu"]
+[ext_resource type="Texture2D" uid="uid://djlfng10pmlht" path="res://assets/bg/meteor.png" id="6_6ytgr"]
+
+[sub_resource type="GDScript" id="GDScript_cw306"]
+script/source = "extends ParallaxBackground
+"
+
+[sub_resource type="GDScript" id="GDScript_iu86y"]
+script/source = "extends ParallaxLayer
+
+var count = 0
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	count += 1
+	motion_mirroring
+"
+
+[node name="BG" type="Node2D"]
+
+[node name="BG" type="ParallaxBackground" parent="."]
+script = SubResource("GDScript_cw306")
+
+[node name="Par_Sky" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(3072, 3072)
+
+[node name="Sky" type="Sprite2D" parent="BG/Par_Sky"]
+texture_filter = 6
+position = Vector2(0, 3.05176e-05)
+scale = Vector2(3, 3)
+texture = ExtResource("2_bc2ca")
+
+[node name="Par_Sky2" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(3072, 3072)
+
+[node name="Sky" type="Sprite2D" parent="BG/Par_Sky2"]
+position = Vector2(1536, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("2_bc2ca")
+
+[node name="Par_Sky3" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(3072, 3072)
+
+[node name="Sky" type="Sprite2D" parent="BG/Par_Sky3"]
+position = Vector2(0, 1536)
+scale = Vector2(3, 3)
+texture = ExtResource("2_bc2ca")
+
+[node name="Par_Sky4" type="ParallaxLayer" parent="BG"]
+motion_mirroring = Vector2(3072, 3072)
+
+[node name="Sky" type="Sprite2D" parent="BG/Par_Sky4"]
+position = Vector2(1536, 1536)
+scale = Vector2(3, 3)
+texture = ExtResource("2_bc2ca")
+
+[node name="Par_Stars" type="ParallaxLayer" parent="BG"]
+z_index = -5
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3840, 2162)
+
+[node name="Stars" type="Sprite2D" parent="BG/Par_Stars"]
+texture = ExtResource("3_hfw4o")
+
+[node name="Par_Stars2" type="ParallaxLayer" parent="BG"]
+z_index = -5
+position = Vector2(1920, 0)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3840, 2162)
+
+[node name="Stars" type="Sprite2D" parent="BG/Par_Stars2"]
+texture = ExtResource("3_hfw4o")
+
+[node name="Par_Stars3" type="ParallaxLayer" parent="BG"]
+z_index = -5
+position = Vector2(0, 1081)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3840, 2162)
+
+[node name="Stars" type="Sprite2D" parent="BG/Par_Stars3"]
+texture = ExtResource("3_hfw4o")
+
+[node name="Par_Stars4" type="ParallaxLayer" parent="BG"]
+z_index = -5
+position = Vector2(1920, 1081)
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(3840, 2162)
+
+[node name="Stars" type="Sprite2D" parent="BG/Par_Stars4"]
+texture = ExtResource("3_hfw4o")
+
+[node name="Par_Asteroid2" type="ParallaxLayer" parent="BG"]
+position = Vector2(398.455, 606.535)
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(5760, 3240)
+
+[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid2"]
+rotation = 0.994838
+scale = Vector2(2.345, 2.345)
+texture = ExtResource("4_n5rgu")
+hframes = 8
+vframes = 9
+frame = 1
+
+[node name="Par_Asteroid5" type="ParallaxLayer" parent="BG"]
+position = Vector2(398.455, 606.535)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(5760, 3240)
+
+[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid5"]
+position = Vector2(523.545, -367.535)
+rotation = 0.994838
+scale = Vector2(0.96, 0.96)
+texture = ExtResource("4_n5rgu")
+hframes = 8
+vframes = 9
+frame = 1
+
+[node name="Parallax_Moon" type="ParallaxLayer" parent="BG"]
+texture_filter = 1
+motion_scale = Vector2(1.1, 1.1)
+motion_mirroring = Vector2(12000, 5000)
+script = SubResource("GDScript_iu86y")
+
+[node name="Moon" type="Sprite2D" parent="BG/Parallax_Moon"]
+texture = ExtResource("6_6ytgr")
+
+[node name="Par_Asteroid" type="ParallaxLayer" parent="BG"]
+motion_scale = Vector2(0.83, 0.83)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid"]
+scale = Vector2(0.26, 0.26)
+texture = ExtResource("4_n5rgu")
+hframes = 8
+vframes = 9
+frame = 1
+
+[node name="Par_Asteroid3" type="ParallaxLayer" parent="BG"]
+rotation = 0.588176
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid3"]
+position = Vector2(997.547, -466.953)
+scale = Vector2(0.505, 0.505)
+texture = ExtResource("4_n5rgu")
+hframes = 8
+vframes = 9
+frame = 1
+
+[node name="Par_Asteroid4" type="ParallaxLayer" parent="BG"]
+rotation = 0.588176
+motion_scale = Vector2(0.88, 0.88)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid4"]
+position = Vector2(803.489, 31.4785)
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("4_n5rgu")
+hframes = 8
+vframes = 9
+frame = 1
+
+[node name="Par_Asteroid6" type="ParallaxLayer" parent="BG"]
+rotation = 0.588176
+motion_scale = Vector2(0.78, 0.78)
+motion_mirroring = Vector2(1920, 1080)
+
+[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid6"]
+position = Vector2(448.19, -110.887)
+scale = Vector2(0.377304, 0.377304)
+texture = ExtResource("4_n5rgu")
+hframes = 8
+vframes = 9
+frame = 1
+
+[node name="CanvasModulate" type="CanvasModulate" parent="BG"]
+position = Vector2(577, 324)
+color = Color(0.603922, 0.666667, 0.741176, 1)

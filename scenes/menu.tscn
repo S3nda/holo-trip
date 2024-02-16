@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6k206ecs8jkg"]
+[gd_scene load_steps=4 format=3 uid="uid://b6k206ecs8jkg"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_qdubu"]
+[ext_resource type="PackedScene" uid="uid://m8dyytuttb6v" path="res://scenes/background.tscn" id="2_x4dct"]
+[ext_resource type="Script" path="res://scenes/background.gd" id="3_6qctp"]
 
 [node name="menu" type="Node2D"]
 position = Vector2(470, 310)
@@ -22,6 +24,11 @@ text = "Play"
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="BG" parent="." instance=ExtResource("2_x4dct")]
+script = ExtResource("3_6qctp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

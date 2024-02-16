@@ -1,4 +1,14 @@
-res://scenes/game.tscn
-res://scenes/menu.tscn
-res://scenes/vignette.gdshader
+res://scenes/background.tscn
 res://scripts/player.gd
+res://scenes/vignette.gdshader
+res://scenes/menu.tscn
+res://scenes/game.tscn
+res://objects/player.tscn
+res://scenes/game.gd
+res://scenes/BulletManager.gd
+res://scripts/Bullet.gd
+res://scenes/background.gd
+res://misc/vignette.gdshader
+res://objects/Bullet.tscn
+res://scenes/GUI.gd
+res://scenes/music.gd

@@ -1,47 +1,178 @@
-[gd_scene load_steps=4 format=3 uid="uid://upguvkwa6uox"]
+[gd_scene load_steps=39 format=3 uid="uid://upguvkwa6uox"]
 
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_121rx"]
+[ext_resource type="Texture2D" uid="uid://dtp8evvuop7hn" path="res://assets/spaceships/fire/Fire 01.png" id="1_ijlpo"]
 [ext_resource type="Texture2D" uid="uid://wrssq1g3mase" path="res://assets/spaceship.png" id="1_m48vj"]
+[ext_resource type="Texture2D" uid="uid://cmg06xdwi8ytb" path="res://assets/spaceships/fire/Fire 02.png" id="2_23nx2"]
+[ext_resource type="Texture2D" uid="uid://dkayl15pcu3yx" path="res://assets/spaceships/fire/Fire 03.png" id="3_fvdgk"]
+[ext_resource type="Texture2D" uid="uid://bura470v6g08g" path="res://assets/spaceships/fire/Fire 04.png" id="4_5ux0x"]
+[ext_resource type="Texture2D" uid="uid://vhd5picefcn8" path="res://assets/spaceships/fire/Fire 05.png" id="5_t10i8"]
+[ext_resource type="Texture2D" uid="uid://yhnnqlgop7r1" path="res://assets/spaceships/fire/Fire 06.png" id="6_uwhmg"]
+[ext_resource type="Texture2D" uid="uid://snak4elkrr8v" path="res://assets/spaceships/fire/Fire 07.png" id="7_i0m4g"]
+[ext_resource type="Texture2D" uid="uid://bcjghbcddjkn2" path="res://assets/spaceships/fire/Fire 08.png" id="8_45qxg"]
+[ext_resource type="Texture2D" uid="uid://ns8tk8473si5" path="res://assets/spaceships/fire/Fire 09.png" id="9_ifqlg"]
+[ext_resource type="Texture2D" uid="uid://boyxxpxun8vhm" path="res://assets/spaceships/fire/Fire 10.png" id="10_603hm"]
+[ext_resource type="Texture2D" uid="uid://l0bju1c7pe2f" path="res://assets/spaceships/fire/Fire 11.png" id="11_8qci5"]
+[ext_resource type="Texture2D" uid="uid://qqrdjo22s8e0" path="res://assets/spaceships/fire/Fire 12.png" id="12_i08ax"]
+[ext_resource type="Texture2D" uid="uid://drycavbkycnxr" path="res://assets/spaceships/fire/Fire 13.png" id="13_xn8w7"]
+[ext_resource type="Texture2D" uid="uid://m8kmxktf76ek" path="res://assets/spaceships/fire/Fire 14.png" id="14_ar4b3"]
+[ext_resource type="Texture2D" uid="uid://b3kn3trijgc2b" path="res://assets/spaceships/fire/Fire 15.png" id="15_j2ogg"]
+[ext_resource type="Texture2D" uid="uid://c8rosq3m8lgjf" path="res://assets/spaceships/fire/Fire 16.png" id="16_mfymy"]
+[ext_resource type="Texture2D" uid="uid://okfsg8yyku5a" path="res://assets/spaceships/fire/Fire 17.png" id="17_aregb"]
+[ext_resource type="Texture2D" uid="uid://dl2ub05xfbed1" path="res://assets/spaceships/fire/Fire 18.png" id="18_x7gph"]
+[ext_resource type="Texture2D" uid="uid://sdffsrb8yhk0" path="res://assets/spaceships/fire/Fire 19.png" id="19_21ghb"]
+[ext_resource type="Texture2D" uid="uid://cdx0bu7xnd0vt" path="res://assets/spaceships/fire/Fire 20.png" id="20_7pgvy"]
+[ext_resource type="Texture2D" uid="uid://c4an6s7vsisgu" path="res://assets/spaceships/fire/Fire 21.png" id="21_o8dpf"]
+[ext_resource type="Texture2D" uid="uid://cydm1irnerndr" path="res://assets/spaceships/fire/Fire 22.png" id="22_sd80s"]
+[ext_resource type="Texture2D" uid="uid://cl5ilqs1006us" path="res://assets/spaceships/fire/Fire 23.png" id="23_8k8fm"]
+[ext_resource type="Texture2D" uid="uid://w7hemibgakd1" path="res://assets/spaceships/fire/Fire 24.png" id="24_ftd3m"]
+[ext_resource type="Texture2D" uid="uid://ddos351p3esil" path="res://assets/spaceships/fire/Fire 25.png" id="25_jmxg0"]
+[ext_resource type="Texture2D" uid="uid://dlx6d4j4xg2ii" path="res://assets/spaceships/fire/Fire 26.png" id="26_jgleb"]
+[ext_resource type="Texture2D" uid="uid://dwkhmsmycgo4e" path="res://assets/spaceships/fire/Fire 27.png" id="27_1lprw"]
+[ext_resource type="Texture2D" uid="uid://drqm0d320k2pu" path="res://assets/spaceships/fire/Fire 28.png" id="28_xtavm"]
+[ext_resource type="Texture2D" uid="uid://be6ep0755y04" path="res://assets/spaceships/fire/Fire 29.png" id="29_wu1o4"]
+[ext_resource type="Texture2D" uid="uid://c8kxcyd8m02db" path="res://assets/spaceships/fire/Fire 30.png" id="30_enchf"]
+[ext_resource type="Texture2D" uid="uid://veyu5xctip5i" path="res://assets/spaceships/fire/Fire 31.png" id="31_gkb6q"]
+[ext_resource type="Texture2D" uid="uid://dr1uxheeuk5td" path="res://assets/spaceships/fire/Fire 32.png" id="32_lyqbt"]
+[ext_resource type="AudioStream" uid="uid://c8jp4efxpmw4e" path="res://assets/sfx/sound_spaceship.wav" id="35_txdpd"]
 
-[sub_resource type="GDScript" id="GDScript_ljxst"]
-script/source = "extends CharacterBody2D
-
-@export var speed = 500
-@export var rotation_speed = 5
-var boost = 0
-var rotation_direction = 0
-var count = 0
-func _ready():
-	pass
-
-func _physics_process(delta):
-	get_input()
-	count += 1
-
-	if (count % 1000 == 0):
-		boost += 1
-	print(count,boost)
-	if speed > 800:
-		speed *= 0.92
-
-	if Input.is_action_pressed(\"spacebar\") and boost>3:
-		boost = 0
-		speed = 3000
-
-
-	rotation += rotation_direction * rotation_speed * delta
-	velocity = -transform.y * speed
-	
-	move_and_slide()
-
-func get_input():
-	rotation_direction = Input.get_axis(\"left\", \"right\")
-"
+[sub_resource type="SpriteFrames" id="SpriteFrames_rkh5f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ijlpo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_23nx2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fvdgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5ux0x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_t10i8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uwhmg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_i0m4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_45qxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ifqlg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_603hm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8qci5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_i08ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_xn8w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ar4b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_j2ogg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_mfymy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_aregb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_x7gph")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_21ghb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_7pgvy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_o8dpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_sd80s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_8k8fm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ftd3m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_jmxg0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_jgleb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_1lprw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_xtavm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_wu1o4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_enchf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_gkb6q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_lyqbt")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 30.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v6e80"]
 size = Vector2(69, 71)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_dfiqg"]
+streams_count = 1
+playback_mode = 2
+random_pitch = 1.0
+random_volume_offset_db = 0.0
+stream_0/stream = ExtResource("35_txdpd")
+stream_0/weight = 1.0
+
 [node name="Player" type="CharacterBody2D"]
-script = SubResource("GDScript_ljxst")
+script = ExtResource("1_121rx")
+
+[node name="Fire" type="AnimatedSprite2D" parent="."]
+position = Vector2(-19, 34.068)
+rotation = -3.14159
+scale = Vector2(0.27839, 0.878495)
+sprite_frames = SubResource("SpriteFrames_rkh5f")
+animation = &"fire"
+autoplay = "fire"
+frame = 6
+frame_progress = 0.677019
+
+[node name="Fire2" type="AnimatedSprite2D" parent="."]
+position = Vector2(19, 34)
+rotation = -3.14159
+scale = Vector2(0.27839, 0.878495)
+sprite_frames = SubResource("SpriteFrames_rkh5f")
+animation = &"fire"
+autoplay = "fire"
+frame = 20
+frame_progress = 0.56748
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 7.62939e-06)
@@ -50,3 +181,15 @@ texture = ExtResource("1_m48vj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_v6e80")
+
+[node name="Engine" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_dfiqg")
+volume_db = -15.646
+pitch_scale = 1.18
+autoplay = true
+
+[node name="Gun" type="Marker2D" parent="."]
+position = Vector2(0, -27.705)
+
+[node name="GunDir" type="Marker2D" parent="."]
+position = Vector2(0, -55.41)

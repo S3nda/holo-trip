@@ -1,33 +1,19 @@
 [gd_scene load_steps=21 format=3 uid="uid://drvud5001f73u"]
 
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_3u4l6"]
 [ext_resource type="PackedScene" uid="uid://upguvkwa6uox" path="res://objects/player.tscn" id="1_p8ruf"]
-[ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="1_r1rlg"]
-[ext_resource type="Script" path="res://scripts/player.gd" id="2_i6cwp"]
-[ext_resource type="Texture2D" uid="uid://djlfng10pmlht" path="res://assets/meteor.png" id="4_4qoor"]
-[ext_resource type="Texture2D" uid="uid://c844kq3q18use" path="res://assets/sky.jpg" id="4_hivvo"]
-[ext_resource type="AudioStream" uid="uid://c8jp4efxpmw4e" path="res://assets/sfx/sound_spaceship.wav" id="4_pnmg3"]
-[ext_resource type="Script" path="res://scenes/ParallaxLayer.gd" id="4_s254a"]
-[ext_resource type="Script" path="res://scenes/ParallaxBackground.gd" id="5_rq0rw"]
-[ext_resource type="Texture2D" uid="uid://c1x0bt3ngqa5d" path="res://assets/stars.png" id="6_8ugr5"]
-[ext_resource type="Texture2D" uid="uid://nb3q3nogvqxp" path="res://assets/asteroid_anim.png" id="7_hqqi5"]
+[ext_resource type="Script" path="res://scenes/music.gd" id="4_7lljy"]
+[ext_resource type="Shader" path="res://misc/vignette.gdshader" id="6_qlfbg"]
+[ext_resource type="PackedScene" uid="uid://m8dyytuttb6v" path="res://scenes/background.tscn" id="7_nx0kb"]
+[ext_resource type="Script" path="res://scenes/GUI.gd" id="8_txdis"]
+[ext_resource type="Texture2D" uid="uid://cdm2r3su8nop7" path="res://assets/GUI/1.png" id="9_6cpqm"]
 [ext_resource type="AudioStream" uid="uid://bdfa56tmemq7b" path="res://assets/music/holo_trip.mp3" id="9_8v2mw"]
+[ext_resource type="Texture2D" uid="uid://s61ep7g1r66w" path="res://assets/GUI/0.png" id="9_jes21"]
 [ext_resource type="AudioStream" uid="uid://bs3qinvj0t7yt" path="res://assets/music/theme2.mp3" id="10_uh6em"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1at54"]
-shader = ExtResource("1_r1rlg")
-shader_parameter/color = null
-shader_parameter/multiplier = 0.27
-shader_parameter/softness = 0.815
-
-[sub_resource type="LabelSettings" id="LabelSettings_whyp4"]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_3kw6g"]
-streams_count = 1
-playback_mode = 2
-random_pitch = 1.0
-random_volume_offset_db = 0.0
-stream_0/stream = ExtResource("4_pnmg3")
-stream_0/weight = 1.0
+[ext_resource type="Texture2D" uid="uid://bkjd703rvw1x5" path="res://assets/GUI/2.png" id="10_x4n2d"]
+[ext_resource type="Texture2D" uid="uid://doj6fj7ei6n5e" path="res://assets/GUI/3.png" id="11_3drdq"]
+[ext_resource type="PackedScene" uid="uid://dwyl8xyhhmcem" path="res://objects/Bullet.tscn" id="13_ulssl"]
+[ext_resource type="Script" path="res://scripts/BulletManager.gd" id="14_jxnh3"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_r0r8f"]
 streams_count = 2
@@ -39,6 +25,12 @@ stream_0/weight = 1.0
 stream_1/stream = ExtResource("9_8v2mw")
 stream_1/weight = 1.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1at54"]
+shader = ExtResource("6_qlfbg")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.27
+shader_parameter/softness = 0.815
+
 [sub_resource type="Gradient" id="Gradient_1ylwa"]
 offsets = PackedFloat32Array(0, 0.532374)
 
@@ -47,36 +39,71 @@ gradient = SubResource("Gradient_1ylwa")
 
 [sub_resource type="Environment" id="Environment_kf0ss"]
 background_mode = 3
+ambient_light_energy = 5.65
 glow_enabled = true
 glow_normalized = true
 glow_intensity = 8.0
 glow_strength = 1.24
-glow_bloom = 0.62
+glow_bloom = 1.0
 glow_hdr_threshold = 1.41
 glow_hdr_scale = 1.84
 glow_hdr_luminance_cap = 48.95
 fog_light_energy = 3.33
 fog_sun_scatter = 0.76
 fog_density = 1.0
-fog_height = 59.65
+fog_height = 1024.0
+volumetric_fog_density = 0.6088
+volumetric_fog_emission_energy = 18.75
+volumetric_fog_gi_inject = 7.95
+volumetric_fog_length = 69.0
+volumetric_fog_ambient_inject = 2.89
 adjustment_enabled = true
-adjustment_brightness = 0.67
+adjustment_brightness = 0.6
+adjustment_contrast = 1.07
 adjustment_color_correction = SubResource("GradientTexture2D_ckvli")
 
-[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_3u17y"]
-auto_exposure_enabled = true
-dof_blur_far_distance = 0.01
-dof_blur_near_enabled = true
-dof_blur_near_distance = 155.19
-dof_blur_near_transition = -1.0
-dof_blur_amount = 1.0
+[sub_resource type="SpriteFrames" id="SpriteFrames_fakwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_jes21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6cpqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_x4n2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3drdq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D"]
 position = Vector2(577, 324)
+script = ExtResource("1_3u4l6")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Player" parent="." instance=ExtResource("1_p8ruf")]
+unique_name_in_owner = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+update_rotation = false
+update_scale = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_r0r8f")
+volume_db = 0.304
+autoplay = true
+mix_target = 1
+script = ExtResource("4_7lljy")
+
+[node name="POST" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="POST"]
 material = SubResource("ShaderMaterial_1at54")
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,147 +111,39 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Boost" type="Label" parent="."]
-offset_left = -188.0
-offset_top = -94.0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "Text"
-label_settings = SubResource("LabelSettings_whyp4")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="POST"]
+environment = SubResource("Environment_kf0ss")
 
-[node name="Player" parent="." instance=ExtResource("1_p8ruf")]
-script = ExtResource("2_i6cwp")
-rotation_speed = 6
+[node name="GUI" type="CanvasLayer" parent="."]
+script = ExtResource("8_txdis")
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
-remote_path = NodePath("../../Camera2D")
-update_rotation = false
-update_scale = false
+[node name="GUIBar" type="ColorRect" parent="GUI"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_top = 0.918
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 230.0
+offset_top = -101.864
+offset_right = -228.0
+offset_bottom = -57.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.352941, 0.352941, 0.352941, 1)
 
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="Player"]
-stream = SubResource("AudioStreamRandomizer_3kw6g")
-volume_db = -15.646
-pitch_scale = 1.18
-autoplay = true
-
-[node name="BG" type="ParallaxBackground" parent="."]
-script = ExtResource("5_rq0rw")
-
-[node name="Par_Sky" type="ParallaxLayer" parent="BG"]
-motion_mirroring = Vector2(3072, 3072)
-
-[node name="Sky" type="Sprite2D" parent="BG/Par_Sky"]
-position = Vector2(0, 3.05176e-05)
-scale = Vector2(3, 3)
-texture = ExtResource("4_hivvo")
-
-[node name="Par_Sky2" type="ParallaxLayer" parent="BG"]
-motion_mirroring = Vector2(3072, 3072)
-
-[node name="Sky" type="Sprite2D" parent="BG/Par_Sky2"]
-position = Vector2(1536, 0)
-scale = Vector2(3, 3)
-texture = ExtResource("4_hivvo")
-
-[node name="Par_Sky3" type="ParallaxLayer" parent="BG"]
-motion_mirroring = Vector2(3072, 3072)
-
-[node name="Sky" type="Sprite2D" parent="BG/Par_Sky3"]
-position = Vector2(0, 1536)
-scale = Vector2(3, 3)
-texture = ExtResource("4_hivvo")
-
-[node name="Par_Sky4" type="ParallaxLayer" parent="BG"]
-motion_mirroring = Vector2(3072, 3072)
-
-[node name="Sky" type="Sprite2D" parent="BG/Par_Sky4"]
-position = Vector2(1536, 1536)
-scale = Vector2(3, 3)
-texture = ExtResource("4_hivvo")
-
-[node name="Par_Stars" type="ParallaxLayer" parent="BG"]
-z_index = -5
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(3840, 2162)
-
-[node name="Stars" type="Sprite2D" parent="BG/Par_Stars"]
-texture = ExtResource("6_8ugr5")
-
-[node name="Par_Stars2" type="ParallaxLayer" parent="BG"]
-z_index = -5
-position = Vector2(1920, 0)
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(3840, 2162)
-
-[node name="Stars" type="Sprite2D" parent="BG/Par_Stars2"]
-texture = ExtResource("6_8ugr5")
-
-[node name="Par_Stars3" type="ParallaxLayer" parent="BG"]
-z_index = -5
-position = Vector2(0, 1081)
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(3840, 2162)
-
-[node name="Stars" type="Sprite2D" parent="BG/Par_Stars3"]
-texture = ExtResource("6_8ugr5")
-
-[node name="Par_Stars4" type="ParallaxLayer" parent="BG"]
-z_index = -5
-position = Vector2(1920, 1081)
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(3840, 2162)
-
-[node name="Stars" type="Sprite2D" parent="BG/Par_Stars4"]
-texture = ExtResource("6_8ugr5")
-
-[node name="Par_Asteroid2" type="ParallaxLayer" parent="BG"]
-position = Vector2(398.455, 606.535)
-motion_scale = Vector2(0.8, 0.8)
-motion_mirroring = Vector2(5760, 3240)
-
-[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid2"]
-rotation = 0.994838
-scale = Vector2(2.345, 2.345)
-texture = ExtResource("7_hqqi5")
-hframes = 8
-vframes = 9
-frame = 1
-
-[node name="Parallax_Moon" type="ParallaxLayer" parent="BG"]
-texture_filter = 1
-motion_scale = Vector2(1.1, 1.1)
-motion_mirroring = Vector2(12000, 5000)
-script = ExtResource("4_s254a")
-
-[node name="Moon" type="Sprite2D" parent="BG/Parallax_Moon"]
-texture = ExtResource("4_4qoor")
-
-[node name="Par_Asteroid" type="ParallaxLayer" parent="BG"]
-motion_scale = Vector2(0.9, 0.9)
-motion_mirroring = Vector2(1920, 1080)
-
-[node name="Asteroid" type="Sprite2D" parent="BG/Par_Asteroid"]
-scale = Vector2(0.505, 0.505)
-texture = ExtResource("7_hqqi5")
-hframes = 8
-vframes = 9
-frame = 1
-
-[node name="CanvasModulate" type="CanvasModulate" parent="BG"]
-position = Vector2(577, 324)
-color = Color(0.603922, 0.666667, 0.741176, 1)
+[node name="BoostLevels" type="AnimatedSprite2D" parent="GUI"]
+unique_name_in_owner = true
+position = Vector2(332, 541)
+sprite_frames = SubResource("SpriteFrames_fakwx")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_speed = 46.93
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_r0r8f")
-volume_db = -11.044
-autoplay = true
-mix_target = 1
+[node name="Bullet" parent="." instance=ExtResource("13_ulssl")]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_kf0ss")
-camera_attributes = SubResource("CameraAttributesPractical_3u17y")
+[node name="BG" parent="." instance=ExtResource("7_nx0kb")]
+
+[node name="BulletManager" type="Node2D" parent="."]
+script = ExtResource("14_jxnh3")
